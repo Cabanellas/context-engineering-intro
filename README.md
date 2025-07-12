@@ -8,7 +8,7 @@ This repository is a fork of [coleam00/context-engineering-intro](https://github
 
 ```bash
 # 1. Clone this template
-git clone https://github.com/gcabanellas/Context-Engineering-Intro.git
+git clone https://github.com/Cabanellas/context-engineering-intro.git
 cd Context-Engineering-Intro
 
 # 2. Set up your project rules (optional - template provided)
