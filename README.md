@@ -1,6 +1,6 @@
-# Context Engineering Template
+# Context Engineering Introduction (Gemini CLI Edition)
 
-A comprehensive template for getting started with Context Engineering - the discipline of engineering context for AI coding assistants so they have the information necessary to get the job done end to end.
+This repository is a fork of [coleam00/context-engineering-intro](https://github.com/coleam00/context-engineering-intro), adapted to utilize **Google Gemini CLI** for context engineering workflows instead of Claude Code. It provides a practical template for structuring your AI prompts and project context for more effective and reliable AI-assisted coding.
 
 > **Context Engineering is 10x better than prompt engineering and 100x better than vibe coding.**
 
@@ -8,11 +8,11 @@ A comprehensive template for getting started with Context Engineering - the disc
 
 ```bash
 # 1. Clone this template
-git clone https://github.com/coleam00/Context-Engineering-Intro.git
+git clone https://github.com/gcabanellas/Context-Engineering-Intro.git
 cd Context-Engineering-Intro
 
 # 2. Set up your project rules (optional - template provided)
-# Edit CLAUDE.md to add your project-specific guidelines
+# Edit GEMINI.md to add your project-specific guidelines
 
 # 3. Add examples (highly recommended)
 # Place relevant code examples in the examples/ folder
@@ -21,17 +21,21 @@ cd Context-Engineering-Intro
 # Edit INITIAL.md with your feature requirements
 
 # 5. Generate a comprehensive PRP (Product Requirements Prompt)
-# In Claude Code, run:
+# In Gemini CLI, run:
 /generate-prp INITIAL.md
 
 # 6. Execute the PRP to implement your feature
-# In Claude Code, run:
+# In Gemini CLI, run:
 /execute-prp PRPs/your-feature-name.md
 ```
 
 ## 📚 Table of Contents
 
 - [What is Context Engineering?](#what-is-context-engineering)
+- [Why Gemini CLI?](#why-gemini-cli)
+- [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation & Authentication](#installation--authentication)
 - [Template Structure](#template-structure)
 - [Step-by-Step Guide](#step-by-step-guide)
 - [Writing Effective INITIAL.md Files](#writing-effective-initialmd-files)
@@ -41,7 +45,9 @@ cd Context-Engineering-Intro
 
 ## What is Context Engineering?
 
-Context Engineering represents a paradigm shift from traditional prompt engineering:
+Context Engineering is the practice of providing AI models with a comprehensive and structured set of information (instructions, rules, documentation, examples, plans, and tools) to perform tasks effectively. Unlike "vibe coding" or basic prompt engineering, it treats this context as an engineered resource, aiming for predictable, robust, and scalable AI-generated outputs.
+
+This approach is crucial for moving AI-assisted coding beyond rapid prototyping to production-ready code by ensuring the AI has all the necessary information to understand the task, adhere to best practices, and integrate seamlessly with existing systems.
 
 ### Prompt Engineering vs Context Engineering
 
@@ -62,21 +68,52 @@ Context Engineering represents a paradigm shift from traditional prompt engineer
 3. **Enables Complex Features**: AI can handle multi-step implementations with proper context
 4. **Self-Correcting**: Validation loops allow AI to fix its own mistakes
 
+## Why Gemini CLI?
+
+This fork leverages Google Gemini CLI for the following reasons:
+
+* **Powerful Models:** Access to advanced Gemini models (like Gemini 2.5 Pro) directly from your terminal.
+* **Large Context Window:** Gemini 2.5 Pro boasts an impressive 1 million token context window, allowing for extensive project context to be provided.
+* **Generous Free Tier:** Gemini CLI offers a substantial free tier for individual Google accounts, making it highly accessible.
+* **Local File System & Command Execution:** Gemini CLI can interact with your local file system and execute shell commands, enabling deep integration into your development workflow.
+
+## Getting Started
+
+### Prerequisites
+
+* Node.js version 20 or higher installed
+* A Google account (for Gemini API access via the CLI)
+
+### Installation & Authentication
+
+1.  **Install Gemini CLI globally:**
+    ```bash
+    npm install -g @google/gemini-cli
+    ```
+
+2.  **Authenticate your Gemini CLI:**
+    ```bash
+    gemini auth login
+    ```
+    This command will open a browser window to authenticate with your Google account. Follow the prompts.
+
+    *(Optional: If you need higher rate limits or specific models, you can set an API key directly: `export GEMINI_API_KEY="YOUR_API_KEY"`)*
+
 ## Template Structure
 
 ```
 context-engineering-intro/
-├── .claude/
+├── .gemini/
 │   ├── commands/
 │   │   ├── generate-prp.md    # Generates comprehensive PRPs
 │   │   └── execute-prp.md     # Executes PRPs to implement features
-│   └── settings.local.json    # Claude Code permissions
+│   └── settings.local.json    # Gemini CLI permissions
 ├── PRPs/
 │   ├── templates/
 │   │   └── prp_base.md       # Base template for PRPs
 │   └── EXAMPLE_multi_agent_prp.md  # Example of a complete PRP
 ├── examples/                  # Your code examples (critical!)
-├── CLAUDE.md                 # Global rules for AI assistant
+├── GEMINI.md                 # Global rules for AI assistant
 ├── INITIAL.md               # Template for feature requests
 ├── INITIAL_EXAMPLE.md       # Example feature request
 └── README.md                # This file
@@ -86,9 +123,9 @@ This template doesn't focus on RAG and tools with context engineering because I 
 
 ## Step-by-Step Guide
 
-### 1. Set Up Global Rules (CLAUDE.md)
+### 1. Set Up Global Rules (GEMINI.md)
 
-The `CLAUDE.md` file contains project-wide rules that the AI assistant will follow in every conversation. The template includes:
+The `GEMINI.md` file contains project-wide rules that the AI assistant will follow in every conversation. The template includes:
 
 - **Project awareness**: Reading planning docs, checking tasks
 - **Code structure**: File size limits, module organization
@@ -129,14 +166,14 @@ PRPs (Product Requirements Prompts) are comprehensive implementation blueprints 
 
 They are similar to PRDs (Product Requirements Documents) but are crafted more specifically to instruct an AI coding assistant.
 
-Run in Claude Code:
+Run in Gemini CLI:
 ```bash
 /generate-prp INITIAL.md
 ```
 
-**Note:** The slash commands are custom commands defined in `.claude/commands/`. You can view their implementation:
-- `.claude/commands/generate-prp.md` - See how it researches and creates PRPs
-- `.claude/commands/execute-prp.md` - See how it implements features from PRPs
+**Note:** The slash commands are custom commands defined in `.gemini/commands/`. You can view their implementation:
+- `.gemini/commands/generate-prp.md` - See how it researches and creates PRPs
+- `.gemini/commands/execute-prp.md` - See how it implements features from PRPs
 
 The `$ARGUMENTS` variable in these commands receives whatever you pass after the command name (e.g., `INITIAL.md` or `PRPs/your-feature.md`).
 
@@ -285,12 +322,12 @@ examples/
 - Add MCP server resources
 - Reference specific documentation sections
 
-### 5. Customize CLAUDE.md
+### 5. Customize GEMINI.md
 - Add your conventions
 - Include project-specific rules
 - Define coding standards
 
 ## Resources
 
-- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [Gemini CLI Code Documentation](https://github.com/google-gemini/gemini-cli)
 - [Context Engineering Best Practices](https://www.philschmid.de/context-engineering)
